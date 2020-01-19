@@ -6,9 +6,9 @@
     </head>
     <body>
         <script>
-            let playerScore = 0;
-            let computerScore = 0;
-            let outcome
+            let playerScore;
+            let computerScore;
+            let outcome;
 
             function computerPlay() {
                 number = Math.random()
@@ -21,9 +21,9 @@
                 }
             }
 
-            const playerSelection = 'rock'
-
-            function playRound(playerSelection, computerSelection) {
+            function playRound() {
+                computerSelection = computerPlay()
+                playerSelection = prompt('What do you choose? Rock, paper, scissors?')
                 if (playerSelection == 'rock') {
                     if (computerSelection == 'rock') {
                         console.log('Tie!')
@@ -61,7 +61,11 @@
             }
 
             function game() {
+                playerScore = 0;
+                computerScore = 0;
                 for (i = 0; i < 5; i++) {
+                    playerSelection = prompt('What do you choose? Rock, paper, scissors?')
+                    playerSelection = playerSelection.toLowerCase()
                     outcome = playRound(playerSelection, computerPlay())
                     if (outcome == '1') {
                         playerScore += 1;
