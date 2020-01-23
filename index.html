@@ -32,6 +32,7 @@
 <script>
 
     function computerPlay() {
+        //Assigns a selection based on a random number
         number = Math.random()
         if (number < 0.34) {
             return 'rock'
@@ -43,43 +44,37 @@
     }
 
     function playRound(playerSelection, computerSelection) {
+        //Applies rock-paper-scissors rules to the selections
+        //Returns '1' for win, '0' for tie, '-1' for loss
         if (playerSelection == 'rock') {
             if (computerSelection == 'rock') {
-                console.log('Tie!')
                 return '0'
             } else if (computerSelection == 'paper') {
-                console.log('You lose! Paper beats rock')
                 return '-1'
             } else {
-                console.log('You win! Rock beats scissors')
                 return '1'
             }
         } else if (playerSelection == 'paper') {
             if (computerSelection == 'rock') {
-                console.log('You win! Paper beats rock')
                 return '1'
             } else if (computerSelection == 'paper') {
-                console.log('Tie!')
                 return '0'
             } else {
-                console.log('You lose! Scissors beats paper')
                 return '-1'
             }
         } else {
             if (computerSelection == 'rock') {
-                console.log('You lose! Rock beats scissors')
                 return '-1'
             } else if (computerSelection == 'paper') {
-                console.log('You win! Scissors beats paper')
                 return '1'
             } else {
-                console.log('Tie!')
                 return '0'
             }
         }
     }
 
     function updateScore(outcome) {
+        //Changes the scoreboards in the website. Restarts game if needed
         if(checkWinner()) {
             playerScore.innerHTML = '0';
             computerScore.innerHTML = '0';
@@ -98,6 +93,7 @@
     }
 
     function clearSelectionDiv() {
+        //Clears the text displaying the selections 
         if(selectionDiv.firstChild) {
             child = selectionDiv.lastChild;
             while(child) {
@@ -108,6 +104,7 @@
     }
 
     function checkWinner() {
+        //Checks for a winner
         if(playerScore.innerHTML == '5' || computerScore.innerHTML == '5') {
             return true
         } else {
@@ -116,6 +113,7 @@
     }
 
     function announceWinner() {
+        //Checks for who the winner is and displays the end result
         if(playerScore.innerHTML == '5') {
             let winnerText = document.createElement('p');
             winnerText.innerHTML = 'Congratulations, you win the tournament!';
@@ -143,7 +141,6 @@
 
 
     rockBtn.addEventListener('click', function(e) {
-        //console.log(e);
         computerSelection = computerPlay();
         outcome = playRound('rock', computerSelection);
         updateScore(outcome);
@@ -169,7 +166,6 @@
 
     });
     paperBtn.addEventListener('click', function(e) {
-        //console.log(e);
         computerSelection = computerPlay();
         outcome = playRound('paper', computerSelection);
         updateScore(outcome);
@@ -194,7 +190,6 @@
         }
     });
     scissorsBtn.addEventListener('click', function(e){
-        //console.log(e);
         computerSelection = computerPlay();
         outcome = playRound('scissors', computerSelection);
         updateScore(outcome);
